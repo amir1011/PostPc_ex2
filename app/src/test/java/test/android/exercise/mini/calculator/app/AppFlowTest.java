@@ -90,4 +90,135 @@ public class AppFlowTest {
   }
 
   // TODO: add at last 10 more flow tests
+
+  @Test
+  public void flowTest3(){
+    // run clicks on "13+5-48="
+    for (View button: Arrays.asList(
+            button1, button3, buttonPlus, button5, buttonMinus, button4, button8, buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("-30", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest4(){
+    // run clicks on "13+6<clear>"
+    for (View button: Arrays.asList(
+            button1, button3, buttonPlus, button6, buttonClear
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest5(){
+    // run clicks on "-" only
+    for (View button: Arrays.asList(
+            buttonMinus
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0-", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest6(){
+    // run clicks on "1+5=<backspace>"
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button5, buttonEquals, buttonBackspace
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest7(){
+    // run clicks on "13+5-9-7-2"
+    for (View button: Arrays.asList(
+            button1, button3, buttonPlus, button5,
+            buttonMinus, button9, buttonMinus, button7, buttonMinus, button2, buttonEquals
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest8(){
+    // run clicks on "1+3+5-9-7-2+0"
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button3, buttonPlus, button5,
+            buttonMinus, button9, buttonMinus, button7, buttonMinus, button2, buttonPlus, button0
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("1+3+5-9-7-2+0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest9(){
+    // run clicks on "1+3+5-9-7-2+0" and then 13_X_times backspace
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button3, buttonPlus, button5,
+            buttonMinus, button9, buttonMinus, button7, buttonMinus, button2, buttonPlus, button0,
+            buttonBackspace, buttonBackspace, buttonBackspace, buttonBackspace, buttonBackspace,
+            buttonBackspace, buttonBackspace, buttonBackspace, buttonBackspace, buttonBackspace,
+            buttonBackspace, buttonBackspace, buttonBackspace
+    )) {
+      button.performClick();
+    }
+    assertEquals("0", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest10(){
+    // run clicks on "9999+9999+9999="
+    for (View button: Arrays.asList(
+            button9, button9, button9, button9, buttonPlus, button9, button9, button9, button9,
+            buttonPlus, button9, button9, button9, button9,
+            buttonPlus, button9, button9, button9, button9, buttonEquals, buttonPlus, button4
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("39996+4", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTes11(){
+    // run clicks on "1+3+5-9-7-2+0<clear>13+5="
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button3, buttonPlus, button5,
+            buttonMinus, button9, buttonMinus, button7, buttonMinus, button2, buttonPlus, button0,
+            buttonClear ,button1, button3, buttonPlus, button5
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("13+5", textViewOutput.getText().toString());
+  }
+
+  @Test
+  public void flowTest12(){
+    // run clicks on "1+3+5-9-7-2+0<clear><backspace><backspace>"
+    for (View button: Arrays.asList(
+            button1, buttonPlus, button3, buttonPlus, button5,
+            buttonMinus, button9, buttonMinus, button7, buttonMinus, button2, buttonPlus, button0,
+            buttonClear, buttonBackspace,buttonBackspace
+    )) {
+      button.performClick();
+    }
+
+    assertEquals("0", textViewOutput.getText().toString());
+  }
 }
